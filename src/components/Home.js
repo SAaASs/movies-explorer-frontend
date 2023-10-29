@@ -10,10 +10,12 @@ function Home() {
   return (
     <>
       <Header location={location.pathname}></Header>
-      <Title></Title>
-      <About></About>
-      <Tech></Tech>
-      <Portfolio></Portfolio>
+      <main>
+        <Title></Title>
+        <About></About>
+        <Tech></Tech>
+        <Portfolio></Portfolio>
+      </main>
       <Footer></Footer>
     </>
   );

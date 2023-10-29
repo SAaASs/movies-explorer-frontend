@@ -2,7 +2,7 @@ import logo from '../images/logo.svg';
 function Login() {
   return (
     <>
-      <div className="sign">
+      <main className="sign">
         <div className="sign__wrapper">
           <div className="sign__circle">
             <img src={logo}></img>
@@ -22,7 +22,7 @@ function Login() {
             <button className="sign__question-button">Регистрация</button>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

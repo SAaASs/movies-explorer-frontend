@@ -6,7 +6,9 @@
 }
 @media (max-width: 768px) {
     .portfolio__main {
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
+        padding-top: 60px;
+        padding-bottom: 70px;
     }
 }

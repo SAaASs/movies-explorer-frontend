@@ -28,5 +28,6 @@
         font-style: normal;
         font-weight: 400;
         line-height: 16px; /* 145.455% */
+        padding-bottom: 40px;
     }
 }

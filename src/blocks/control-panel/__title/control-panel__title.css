@@ -1,9 +1,11 @@
-.controlPanel__title {
+.control-panel__title {
     color: #A0A0A0;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Inter;
     font-size: 28px;
     font-style: normal;
     font-weight: 500;
+    border: none;
+    outline: none;
     line-height: normal;
 }

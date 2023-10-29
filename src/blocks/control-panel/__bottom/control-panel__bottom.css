@@ -1,4 +1,4 @@
-.controlPanel__bottom {
+.control-panel__bottom {
     padding-top: 33px;
     display: flex;
     justify-content: space-between;
@@ -6,7 +6,7 @@
     align-items: center;
 }
 @media (min-width: 768px) and (max-width: 1024px) {
-    .controlPanel__bottom {
+    .control-panel__bottom {
         flex-direction: row-reverse;
         width: 100%;
         justify-content: end;

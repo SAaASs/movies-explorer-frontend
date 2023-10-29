@@ -20,6 +20,7 @@
   }
 @media (max-width: 768px) {
     .portfolio__name {
+        padding-top: 40px;
         color: #000;
         font-family: Inter;
         font-size: 30px;

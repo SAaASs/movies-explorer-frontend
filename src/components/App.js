@@ -20,10 +20,14 @@ function App() {
           path="/movies"
           element={<ProtectedRouteElement isLoggedIn={true} element={Movies} />}
         />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRouteElement isLoggedIn={true} element={Profile} />
+          }
+        />
         <Route />
         <Route path="/sign-up" element={<Register />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route />
         <Route path="/sign-in" element={<Login />} />
         <Route />
         <Route path="*" element={<NotFound />} />

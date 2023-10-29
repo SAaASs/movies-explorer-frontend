@@ -2,7 +2,7 @@
     width: 270px;
     height: 151px;
 }
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1140px) {
     .movieCard__img {
         width: 339px;
         height: 190px;

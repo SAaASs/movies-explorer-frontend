@@ -3,31 +3,31 @@ function ControlPanel() {
   const [isSwitchActive, setIsSwitchActive] = React.useState(false);
   return (
     <>
-      <section className="controlPanel">
-        <div className="controlPanel__upper">
-          <h2 className="controlPanel__title">Фильмы</h2>
-          <button className="controlPanel__search-button">Найти</button>
-        </div>
-        <div className="controlPanel__bottom">
+      <section className="control-panel">
+        <form className="control-panel__upper">
+          <input placeholder="Фильмы" className="control-panel__title"></input>
+          <button className="control-panel__search-button">Найти</button>
+        </form>
+        <div className="control-panel__bottom">
           <div
             onClick={() => {
               setIsSwitchActive(!isSwitchActive);
             }}
             className={
               !isSwitchActive
-                ? 'controlPanel__switch'
-                : 'controlPanel__switch_active'
+                ? 'control-panel__switch'
+                : 'control-panel__switch_active'
             }
           >
             <div
               className={
                 !isSwitchActive
-                  ? 'controlPanel__switch-circle'
-                  : 'controlPanel__switch-circle_active'
+                  ? 'control-panel__switch-circle'
+                  : 'control-panel__switch-circle_active'
               }
             ></div>
           </div>
-          <p className="controlPanel__switch-title">Короткометражки</p>
+          <p className="control-panel__switch-title">Короткометражки</p>
         </div>
       </section>
     </>

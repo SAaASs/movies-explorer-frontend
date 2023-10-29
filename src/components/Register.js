@@ -2,7 +2,7 @@ import logo from '../images/logo.svg';
 function Register() {
   return (
     <>
-      <div className="sign">
+      <main className="sign">
         <div className="sign__wrapper">
           <div className="sign__circle">
             <img src={logo}></img>
@@ -26,7 +26,7 @@ function Register() {
             <button className="sign__question-button">Войти</button>
           </div>
         </div>
-      </div>
+      </main>
     </>
   );
 }

@@ -50,15 +50,15 @@ function MoviesList() {
   const location = useLocation();
   console.log(location.pathname);
   return (
-    <>
+    <main>
       <ControlPanel></ControlPanel>
-      <section className="moviesList">
+      <section className="movies-list">
         {cards.map((item) => {
           return <MovieCard key={item._id} card={item}></MovieCard>;
         })}
       </section>
       <div className="movie-list__more-button">Ещё</div>
-    </>
+    </main>
   );
 }
 
