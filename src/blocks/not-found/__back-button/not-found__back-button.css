@@ -1,0 +1,13 @@
+.not-found__back-button {
+    background: transparent;
+    color: #3456F3;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    outline: none;
+    border: none;
+    padding-top: 184px;
+}

@@ -1,0 +1,4 @@
+.header__movies-buttons {
+    display: flex;
+    gap: 16px;
+}

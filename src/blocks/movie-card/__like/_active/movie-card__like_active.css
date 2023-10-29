@@ -1,0 +1,5 @@
+.movieCard__like_active {
+    width: 24px;
+    height: 24px;
+    background-image: url('../../../../images/likeActive.svg');
+}

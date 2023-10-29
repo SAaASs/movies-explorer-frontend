@@ -1,0 +1,10 @@
+.profile__input {
+    border: none;
+    text-align: end;
+    outline: none;
+    width: 275px;
+}
+.profile__input::placeholder{
+    color: black;
+    opacity: 1;
+}

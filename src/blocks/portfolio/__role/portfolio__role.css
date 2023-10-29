@@ -1,0 +1,33 @@
+.portfolio__role {
+    color: #000;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 111.111% */
+    padding-top: 18px;
+    padding-bottom: 26px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .portfolio__role {
+        color: #000;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px; /* 150% */
+    }
+  }
+@media (max-width: 768px) {
+    .portfolio__role {
+        color: #000;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px; /* 145.455% */
+    }
+}

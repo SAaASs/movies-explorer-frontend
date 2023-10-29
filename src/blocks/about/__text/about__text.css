@@ -1,0 +1,7 @@
+.about__text {
+    padding-top: 70px;
+    padding-bottom: 110px;
+    gap: 40px;
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,8 @@
+.about__time-stripe-green {
+    width: 15%;
+    background-color: #2BE080;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

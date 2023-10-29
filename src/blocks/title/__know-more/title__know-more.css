@@ -1,0 +1,19 @@
+.title__know-more {
+    width: 129px;
+    height: 36px;
+    border-radius: 3px;
+    border: 1px solid #FFF;
+    opacity: 0.6;
+    background: transparent;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+}
+@media (max-width: 1024px) {
+    .title__know-more {
+        margin: auto;
+    }
+  }

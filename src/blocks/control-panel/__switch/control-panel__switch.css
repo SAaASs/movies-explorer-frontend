@@ -1,0 +1,12 @@
+.controlPanel__switch {
+    width: 34px;
+    height: 14px;
+    background-color: #D2D2D2;
+    border-radius: 20px;
+    position: relative;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .controlPanel__switch {
+        margin-left: 16px;
+    }
+  }

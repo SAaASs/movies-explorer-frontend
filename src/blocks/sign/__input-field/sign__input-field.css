@@ -1,0 +1,13 @@
+.sign__input-field {
+    color: #000;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    outline: none;
+    border: none;
+    margin-bottom: 24px;
+    width: 100%;
+    border-bottom: 1px solid #E8E8E8;
+}

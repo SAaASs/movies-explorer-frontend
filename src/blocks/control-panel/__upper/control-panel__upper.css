@@ -1,0 +1,7 @@
+.controlPanel__upper {
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 13px;
+}

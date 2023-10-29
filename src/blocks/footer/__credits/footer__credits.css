@@ -1,0 +1,21 @@
+.footer__credits {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #000;
+    text-align: right;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+@media (max-width: 768px) {
+    .footer__credits {
+        display: flex;
+        flex-direction: column-reverse;
+        flex-wrap: wrap;
+    }
+  }

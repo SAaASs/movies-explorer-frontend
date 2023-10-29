@@ -1,0 +1,22 @@
+.title__text-subtitle {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.5;
+    font-feature-settings: 'clig' off, 'liga' off;
+}
+@media (max-width: 1024px) {
+    .title__text-subtitle {
+        color: #FFF;
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+    }
+  }
