@@ -10,6 +10,9 @@ function BurgerMenu({ setIsMenuActive }) {
             <button
               className="burger-menu__close-button"
               onClick={() => {
+                document
+                  .querySelector('body')
+                  .classList.toggle('page_overflowed');
                 setIsMenuActive(false);
               }}
             ></button>

@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <>
-      <section className="footer">
+      <footer className="footer">
         <h4 className="footer__description">
           Учебный проект Яндекс.Практикум х BeatFilm.
         </h4>
@@ -12,7 +12,7 @@ function Footer() {
             <a className="footer__link">Github</a>
           </div>
         </div>
-      </section>
+      </footer>
     </>
   );
 }

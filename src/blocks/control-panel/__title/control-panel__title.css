@@ -9,3 +9,8 @@
     outline: none;
     line-height: normal;
 }
+@media (max-width: 768px) {
+    .control-panel__title {
+        width: 230px
+    }
+}

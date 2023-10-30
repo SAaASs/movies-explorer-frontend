@@ -7,12 +7,12 @@ function MovieCard({ card }) {
         <img className="movieCard__img" src={card.image}></img>
         <div className="movieCard__middle">
           <h2 className="movieCard__name">{card.nameRU}</h2>
-          <div
+          <button
             onClick={() => {
               setIsLiked(!isLiked);
             }}
             className={!isLiked ? 'movieCard__like' : 'movieCard__like_active'}
-          ></div>
+          ></button>
         </div>
         <h4 className="movieCard__duration">{`${Math.floor(
           card.duration / 3600

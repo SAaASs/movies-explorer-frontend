@@ -10,7 +10,7 @@ function Home() {
   return (
     <>
       <Header location={location.pathname}></Header>
-      <main>
+      <main className="main">
         <Title></Title>
         <About></About>
         <Tech></Tech>
