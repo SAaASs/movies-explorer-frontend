@@ -5,3 +5,8 @@
     display: flex;
     justify-content: space-between;
 }
+@media (max-width: 768px) {
+    .about__text {
+        flex-direction: column;
+    }
+  }

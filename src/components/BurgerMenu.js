@@ -49,10 +49,7 @@ function BurgerMenu({ setIsMenuActive }) {
             }}
             className="header__account-button header_white"
           >
-            Аккаунт{' '}
-            <div className="header__circle">
-              <img src={profile}></img>
-            </div>
+            Аккаунт <img alt={'movies explorer'} src={profile}></img>
           </button>
         </section>
       </div>

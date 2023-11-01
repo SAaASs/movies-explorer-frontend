@@ -4,7 +4,11 @@ function MovieCard({ card }) {
   return (
     <>
       <div className="movieCard">
-        <img className="movieCard__img" src={card.image}></img>
+        <img
+          alt={'movies explorer movie '}
+          className="movieCard__img"
+          src={card.image}
+        ></img>
         <div className="movieCard__middle">
           <h2 className="movieCard__name">{card.nameRU}</h2>
           <button

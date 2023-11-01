@@ -48,7 +48,6 @@ let cards = [
 ];
 function MoviesList() {
   const location = useLocation();
-  console.log(location.pathname);
   return (
     <main className="main">
       <ControlPanel></ControlPanel>
@@ -57,7 +56,7 @@ function MoviesList() {
           return <MovieCard key={item._id} card={item}></MovieCard>;
         })}
       </section>
-      <div className="movie-list__more-button">Ещё</div>
+      <div className="more-button">Ещё</div>
     </main>
   );
 }

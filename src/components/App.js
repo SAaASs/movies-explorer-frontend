@@ -23,7 +23,21 @@ function App() {
         <Route
           path="/profile"
           element={
-            <ProtectedRouteElement isLoggedIn={true} element={Profile} />
+            <ProtectedRouteElement
+              isOnSavedPage={false}
+              isLoggedIn={true}
+              element={Profile}
+            />
+          }
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <ProtectedRouteElement
+              isLoggedIn={true}
+              isOnSavedPage={true}
+              element={Movies}
+            />
           }
         />
         <Route />

@@ -82,7 +82,7 @@
 @import url('./blocks/movie-card/__middle/movie-card__middle.css');
 @import url('./blocks/movie-card/__like/movie-card__like.css');
 @import url('./blocks/movie-card/__like/_active/movie-card__like_active.css');
-@import url('./blocks/movies-list/__more-button/movies-list__more-button.css');
+@import url('./blocks/more-button/more-button.css');
 @import url('./blocks/profile/__greeting/profile__greeting.css');
 @import url('./blocks/profile/__input/profile__input.css');
 @import url('./blocks/profile/__lower/profile__lower.css');
@@ -107,3 +107,4 @@
 @import url('./blocks/main/main.css');
 @import url('./blocks/header/__wrapper/header__wrapper.css');
 @import url('./blocks/page/_overflowed/page_overflowed.css');
+@import url('./blocks/header/__account-button/_white/header__account-button_white.css');

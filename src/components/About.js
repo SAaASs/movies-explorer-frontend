@@ -26,12 +26,14 @@ function About() {
         <div className="about__time-stripe">
           <div className="about__time-stripe-green">
             <p className="about__time-stripe-title">
-              1 неделя<p className="about__time-stripe-subtitle">Back-end</p>
+              1 неделя
+              <span className="about__time-stripe-subtitle">Back-end</span>
             </p>
           </div>
           <div className="about__time-stripe-white">
             <p className="about__time-stripe-title">
-              4 недели<p className="about__time-stripe-subtitle">Front-end</p>
+              4 недели
+              <span className="about__time-stripe-subtitle">Front-end</span>
             </p>
           </div>
         </div>

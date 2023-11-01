@@ -21,7 +21,11 @@ function Portfolio() {
             </p>
             <a className="portfolio__gh-link">Github</a>
           </div>
-          <img className="portfolio__photo" src={face}></img>
+          <img
+            alt="vitaliy photo"
+            className="portfolio__photo"
+            src={face}
+          ></img>
         </div>
         <div className="portfolio__links">
           <div className="portfolio__links-title">Портфолио</div>
@@ -31,14 +35,16 @@ function Portfolio() {
               href="https://github.com/SAaASs/first-project"
               className="portfolio__link"
             >
-              Статичный сайт<img src={width > 768 ? arrow : smallArrow}></img>
+              Статичный сайт
+              <img alt="link" src={width > 768 ? arrow : smallArrow}></img>
             </a>
             <a
               target="_blank"
               href="https://github.com/SAaASs/russian-travel"
               className="portfolio__link"
             >
-              Адаптивный сайт<img src={width > 768 ? arrow : smallArrow}></img>
+              Адаптивный сайт
+              <img alt="link" src={width > 768 ? arrow : smallArrow}></img>
             </a>
             <a
               target="_blank"
@@ -46,7 +52,7 @@ function Portfolio() {
               className="portfolio__link"
             >
               Одностраничное приложение
-              <img src={width > 768 ? arrow : smallArrow}></img>
+              <img alt="link" src={width > 768 ? arrow : smallArrow}></img>
             </a>
           </div>
         </div>

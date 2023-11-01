@@ -6,3 +6,6 @@
     border: none;
     outline: none;
 }
+.movieCard__like:hover {
+    cursor: pointer;
+}

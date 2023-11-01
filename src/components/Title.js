@@ -17,7 +17,11 @@ function Title() {
               создателя.
             </h3>
           </div>
-          <img src={webPlanet} className="title__web-image"></img>
+          <img
+            alt="world-wide-web"
+            src={webPlanet}
+            className="title__web-image"
+          ></img>
         </div>
         <button className="title__know-more">Узнать больше</button>
       </section>

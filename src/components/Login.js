@@ -5,7 +5,7 @@ function Login() {
       <main className="sign">
         <div className="sign__wrapper">
           <div className="sign__circle">
-            <img src={logo}></img>
+            <img alt={'movies explorer'} src={logo}></img>
           </div>
           <div className="sign__title">Рады видеть!</div>
           <div className="sign__input">

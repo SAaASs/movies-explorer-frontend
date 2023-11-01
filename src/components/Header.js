@@ -10,11 +10,10 @@ function Header({ location }) {
   const navigate = useNavigate();
   return (
     <>
-      <header
-        className={location != '/movies' ? 'header' : 'header header_white'}
-      >
+      <header className={location == '/' ? 'header' : 'header header_white'}>
         <div className="header__wrapper">
           <img
+            alt={'movies explorer'}
             className="header__logo"
             onClick={() => {
               navigate('/');
@@ -28,7 +27,7 @@ function Header({ location }) {
                   navigate('/movies');
                 }}
                 className={
-                  location != '/movies'
+                  location == '/'
                     ? 'header__movies-button'
                     : 'header__movies-button header__movies-button_black'
                 }
@@ -37,10 +36,10 @@ function Header({ location }) {
               </button>
               <button
                 onClick={() => {
-                  navigate('/movies');
+                  navigate('/saved');
                 }}
                 className={
-                  location != '/movies'
+                  location == '/'
                     ? 'header__movies-button'
                     : 'header__movies-button header__movies-button_black'
                 }
@@ -55,15 +54,12 @@ function Header({ location }) {
                 navigate('/profile');
               }}
               className={
-                location != '/movies'
+                location == '/'
                   ? 'header__account-button'
-                  : 'header__account-button header_white'
+                  : 'header__account-button header__account-button_white'
               }
             >
-              Аккаунт{' '}
-              <div className="header__circle">
-                <img src={profile}></img>
-              </div>
+              Аккаунт <img alt={'movies explorer avatar'} src={profile}></img>
             </button>
           ) : (
             <button
