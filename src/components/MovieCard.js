@@ -22,13 +22,12 @@ function MovieCard({ likedMoovies, setLikedMoovies, card, isLikedOnLoad }) {
                 api.LikeMovie(card);
               } else {
                 api.UnlikeMovie(card.id).then((movie) => {
-                  console.log(likedMoovies);
-                  setLikedMoovies(
-                    likedMoovies.filter((mov) => {
-                      console.log(!(mov == card.id));
-                      return !(mov == card.id);
-                    })
-                  );
+                  const res = likedMoovies.filter((mov) => {
+                    console.log(!(mov == card.id));
+                    return !(mov == card.id);
+                  });
+                  console.log('After apdate API', likedMoovies, res);
+                  setLikedMoovies(res);
                 });
               }
               setIsLiked(!isLiked);

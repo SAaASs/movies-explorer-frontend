@@ -25,16 +25,16 @@ function MoviesList() {
                 return movie.duration >= 40;
               })
             );
-        // console.log('readytorender');
-        // let likedIds = likes.map((item) => item.movieId);
-        // setLikedMoovies(likedIds);
-        // if (location.pathname == '/saved-movies') {
-        //   setFilteredMoovies(
-        //     allMoovies.current.filter((movie) => {
-        //       return likedIds.includes(movie.id);
-        //     })
-        //   );
-        // }
+        console.log('readytorender');
+        let likedIds = likes.map((item) => item.movieId);
+        setLikedMoovies(likedIds);
+        if (location.pathname == '/saved-movies') {
+          setFilteredMoovies(
+            allMoovies.current.filter((movie) => {
+              return likedIds.includes(movie.id);
+            })
+          );
+        }
       }
     );
   }, [location, isSwitchActive]);
@@ -57,6 +57,8 @@ function MoviesList() {
       setCardsEdge(5);
     }
   }, []);
+
+  console.log('>> likedMoovies', likedMoovies);
   return (
     <>
       <main className="main">
@@ -64,13 +66,26 @@ function MoviesList() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              setFilteredMoovies(
-                allMoovies.current.filter((movie) => {
-                  return (movie.nameRU + movie.nameEN)
-                    .toLowerCase()
-                    .includes(e.target[0].value.trim().toLowerCase());
-                })
-              );
+              if (location.pathname == '/saved-movies') {
+                setFilteredMoovies(
+                  allMoovies.current.filter((movie) => {
+                    return (
+                      (movie.nameRU + movie.nameEN)
+                        .toLowerCase()
+                        .includes(e.target[0].value.trim().toLowerCase()) &
+                      likedMoovies.includes(movie.id)
+                    );
+                  })
+                );
+              } else {
+                setFilteredMoovies(
+                  allMoovies.current.filter((movie) => {
+                    return (movie.nameRU + movie.nameEN)
+                      .toLowerCase()
+                      .includes(e.target[0].value.trim().toLowerCase());
+                  })
+                );
+              }
             }}
             className="control-panel__upper"
           >
@@ -78,13 +93,26 @@ function MoviesList() {
               placeholder="Фильмы"
               className="control-panel__title"
               onChange={(e) => {
-                setFilteredMoovies(
-                  allMoovies.current.filter((movie) => {
-                    return (movie.nameRU + movie.nameEN)
-                      .toLowerCase()
-                      .includes(e.target.value.trim().toLowerCase());
-                  })
-                );
+                if (location.pathname == '/saved-movies') {
+                  setFilteredMoovies(
+                    allMoovies.current.filter((movie) => {
+                      return (
+                        (movie.nameRU + movie.nameEN)
+                          .toLowerCase()
+                          .includes(e.target.value.trim().toLowerCase()) &
+                        likedMoovies.includes(movie.id)
+                      );
+                    })
+                  );
+                } else {
+                  setFilteredMoovies(
+                    allMoovies.current.filter((movie) => {
+                      return (movie.nameRU + movie.nameEN)
+                        .toLowerCase()
+                        .includes(e.target.value.trim().toLowerCase());
+                    })
+                  );
+                }
               }}
             ></input>
             <button type="submit" className="control-panel__search-button">
@@ -114,33 +142,17 @@ function MoviesList() {
           </div>
         </section>
         <section className="movies-list">
-          {location.pathname != 'saved-movies'
-            ? filteredMoovies.slice(0, CardsEdge).map((item, index) => {
-                return (
-                  <MovieCard
-                    likedMoovies={likedMoovies}
-                    setLikedMoovies={setLikedMoovies}
-                    isLikedOnLoad={likedMoovies.includes(item.id)}
-                    key={`${item.id}_${index}`}
-                    card={item}
-                  />
-                );
-              })
-            : filteredMoovies
-                .filter((movie) => {
-                  return likedMoovies.includes(movie.id);
-                })
-                .map((item, index) => {
-                  return (
-                    <MovieCard
-                      likedMoovies={likedMoovies}
-                      setLikedMoovies={setLikedMoovies}
-                      isLikedOnLoad={likedMoovies.includes(item.id)}
-                      key={`${item.id}_${index}`}
-                      card={item}
-                    />
-                  );
-                })}
+          {filteredMoovies.slice(0, CardsEdge).map((item, index) => {
+            return (
+              <MovieCard
+                likedMoovies={likedMoovies}
+                setLikedMoovies={setLikedMoovies}
+                isLikedOnLoad={likedMoovies?.includes(item.id)}
+                key={`${item.id}_${index}`}
+                card={item}
+              />
+            );
+          })}
         </section>
         {location.pathname != '/saved-movies' &&
           CardsEdge < filteredMoovies.length && (

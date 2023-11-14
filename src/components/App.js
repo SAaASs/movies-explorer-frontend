@@ -12,7 +12,7 @@ import NotFound from './NotFound';
 import { api } from '../utils/MainApi';
 import Loader from './Loader';
 function App() {
-  const [isUserChecked, setIsUserChecked] = React.useState(false);
+  const [isUserChecked, setIsUserChecked] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
     email: '',
@@ -36,6 +36,7 @@ function App() {
         });
     }
   }, []);
+  console.log('RND isUserChecked', isUserChecked);
   return isUserChecked ? (
     <>
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser }}>
