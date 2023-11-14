@@ -108,3 +108,11 @@
 @import url('./blocks/header/__wrapper/header__wrapper.css');
 @import url('./blocks/page/_overflowed/page_overflowed.css');
 @import url('./blocks/header/__account-button/_white/header__account-button_white.css');
+@import url('./blocks/sign/__fieldset/sign__fieldset.css');
+@import url('./blocks/sign/__form/sign__form.css');
+@import url('./blocks/sign/__input-err/sign__input-err.css');
+@import url('./blocks/header/__sign/header__sign.css');
+@import url('./blocks/header/__sign-in/header__sign-in.css');
+@import url('./blocks/header/__sign-up/header__sign-up.css');
+@import url('./blocks/loader/__pic/loader__pic.css');
+@import url('./blocks/loader/loader.css');

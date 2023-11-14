@@ -9,6 +9,9 @@
     background: transparent;
     border: none;
 }
+.sign__question-button:hover {
+    cursor: pointer;
+}
 @media (max-width: 768px) {
     .sign__question-button {
         color: #3456F3;

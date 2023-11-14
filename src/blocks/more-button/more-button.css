@@ -16,4 +16,7 @@
     font-weight: 500;
     line-height: normal;
     margin-top: 23px;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
