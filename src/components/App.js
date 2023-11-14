@@ -12,7 +12,7 @@ import NotFound from './NotFound';
 import { api } from '../utils/MainApi';
 import Loader from './Loader';
 function App() {
-  const [isUserChecked, setIsUserChecked] = React.useState(true);
+  const [isUserChecked, setIsUserChecked] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({
     name: '',
     email: '',

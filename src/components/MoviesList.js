@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { movApi } from '../utils/MoviesApi';
 import { api } from '../utils/MainApi';
 import useWindowDimensions from '../utils/useWindowDimension';
+
 function MoviesList() {
   const { height, width } = useWindowDimensions();
   const location = useLocation();
@@ -13,10 +14,44 @@ function MoviesList() {
   const allMoovies = useRef(null);
   const [filteredMoovies, setFilteredMoovies] = React.useState([]);
   const [likedMoovies, setLikedMoovies] = React.useState([]);
+  const [searchPrase, setSearchPhrase] = React.useState('');
+
+  const isItSavedPageUrl = location.pathname == '/saved-movies';
+
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    setSearchPhrase(e.target.value);
+    setFilteredMoovies(filterBySearchPhrase(e.target.value));
+  };
+
+  const filterBySearchPhrase = (val) => {
+    let res = [];
+
+    res = allMoovies.current.filter((movie) => {
+      const searchRes = (movie.nameRU + movie.nameEN)
+        .toLowerCase()
+        .includes(val.toLowerCase());
+
+      return isItSavedPageUrl
+        ? searchRes & likedMoovies.includes(movie.id)
+        : searchRes;
+    });
+
+    return res;
+  };
+
+  const handleLikeMovieClick = (ms) => {
+    console.log('>likedMoovies change', ms);
+    setLikedMoovies(ms);
+  };
 
   React.useEffect(() => {
     Promise.all([movApi.getAllMovies(), api.getMyMovies()]).then(
       ([all, likes]) => {
+        let likedIds = likes.map((item) => item.movieId);
+        for (let i = 0; i < all.length; i++) {
+          all[i].isLiked = likedIds.includes(all[i].id);
+        }
         allMoovies.current = all;
         isSwitchActive
           ? setFilteredMoovies([...all])
@@ -25,8 +60,6 @@ function MoviesList() {
                 return movie.duration >= 40;
               })
             );
-        console.log('readytorender');
-        let likedIds = likes.map((item) => item.movieId);
         setLikedMoovies(likedIds);
         if (location.pathname == '/saved-movies') {
           setFilteredMoovies(
@@ -38,6 +71,7 @@ function MoviesList() {
       }
     );
   }, [location, isSwitchActive]);
+
   React.useEffect(() => {
     if (width >= 1280) {
       setHowMuchCardsAdd(4);
@@ -63,57 +97,12 @@ function MoviesList() {
     <>
       <main className="main">
         <section className="control-panel">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              if (location.pathname == '/saved-movies') {
-                setFilteredMoovies(
-                  allMoovies.current.filter((movie) => {
-                    return (
-                      (movie.nameRU + movie.nameEN)
-                        .toLowerCase()
-                        .includes(e.target[0].value.trim().toLowerCase()) &
-                      likedMoovies.includes(movie.id)
-                    );
-                  })
-                );
-              } else {
-                setFilteredMoovies(
-                  allMoovies.current.filter((movie) => {
-                    return (movie.nameRU + movie.nameEN)
-                      .toLowerCase()
-                      .includes(e.target[0].value.trim().toLowerCase());
-                  })
-                );
-              }
-            }}
-            className="control-panel__upper"
-          >
+          <form onSubmit={handleSearchChange} className="control-panel__upper">
             <input
               placeholder="Фильмы"
               className="control-panel__title"
-              onChange={(e) => {
-                if (location.pathname == '/saved-movies') {
-                  setFilteredMoovies(
-                    allMoovies.current.filter((movie) => {
-                      return (
-                        (movie.nameRU + movie.nameEN)
-                          .toLowerCase()
-                          .includes(e.target.value.trim().toLowerCase()) &
-                        likedMoovies.includes(movie.id)
-                      );
-                    })
-                  );
-                } else {
-                  setFilteredMoovies(
-                    allMoovies.current.filter((movie) => {
-                      return (movie.nameRU + movie.nameEN)
-                        .toLowerCase()
-                        .includes(e.target.value.trim().toLowerCase());
-                    })
-                  );
-                }
-              }}
+              onChange={handleSearchChange}
+              value={searchPrase}
             ></input>
             <button type="submit" className="control-panel__search-button">
               Найти
@@ -146,7 +135,7 @@ function MoviesList() {
             return (
               <MovieCard
                 likedMoovies={likedMoovies}
-                setLikedMoovies={setLikedMoovies}
+                onLikeMovieClick={handleLikeMovieClick}
                 isLikedOnLoad={likedMoovies?.includes(item.id)}
                 key={`${item.id}_${index}`}
                 card={item}
