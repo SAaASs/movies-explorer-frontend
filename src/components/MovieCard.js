@@ -1,14 +1,12 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import { api } from '../utils/MainApi';
-function MovieCard({ likedMoovies, onLikeMovieClick, card, isLikedOnLoad }) {
+function MovieCard({ likedMovies, setLikedMovies, card, isLikedOnLoad }) {
   const [isLiked, setIsLiked] = React.useState(isLikedOnLoad);
-  const location = useLocation();
   let mins = card.duration % 60;
   if (mins < 10) {
     mins = '0' + (card.duration % 60);
   }
-  return likedMoovies.includes(card.id) || location.pathname == '/movies' ? (
+  return (
     <div className="movieCard">
       <img
         alt={'movies explorer movie '}
@@ -21,15 +19,13 @@ function MovieCard({ likedMoovies, onLikeMovieClick, card, isLikedOnLoad }) {
           onClick={() => {
             if (!isLiked) {
               api.LikeMovie(card);
-              onLikeMovieClick([...likedMoovies, card.id]);
             } else {
               api.UnlikeMovie(card.id).then((movie) => {
-                const res = likedMoovies.filter((mov) => {
-                  console.log(!(mov == card.id));
+                const res = likedMovies.filter((mov) => {
                   return !(mov == card.id);
                 });
 
-                onLikeMovieClick(res);
+                setLikedMovies(res);
               });
             }
             setIsLiked(!isLiked);
@@ -41,8 +37,6 @@ function MovieCard({ likedMoovies, onLikeMovieClick, card, isLikedOnLoad }) {
         card.duration / 60
       )}:${mins}`}</h4>
     </div>
-  ) : (
-    ''
   );
 }
 
