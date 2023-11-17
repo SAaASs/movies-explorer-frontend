@@ -34,6 +34,8 @@ function App() {
         .finally(() => {
           setIsUserChecked(true);
         });
+    } else {
+      setIsUserChecked(true);
     }
   }, []);
   console.log('RND isUserChecked', isUserChecked);

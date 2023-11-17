@@ -4,31 +4,91 @@ import { useLocation } from 'react-router-dom';
 import { movApi } from '../utils/MoviesApi';
 import { api } from '../utils/MainApi';
 import useWindowDimensions from '../utils/useWindowDimension';
+import Loader from './Loader';
+import FoundNothing from './FoundNothing';
 
 function MoviesList() {
   const { height, width } = useWindowDimensions();
   const location = useLocation();
+  console.log(
+    'lastQuery lastSwitchState',
+    localStorage.getItem('sasMovExpLastSearchQuery'),
+    localStorage.getItem('sasMovExpLastSwitchState')
+  );
   const [howMuchCardsAdd, setHowMuchCardsAdd] = React.useState(4);
   const [CardsEdge, setCardsEdge] = React.useState(16);
-  const [isSwitchActive, setIsSwitchActive] = React.useState(false);
+  const [isSwitchActive, setIsSwitchActive] = React.useState(
+    typeof localStorage.getItem('sasMovExpLastSwitchState') == 'string'
+      ? localStorage.getItem('sasMovExpLastSwitchState') === 'true'
+      : false
+  );
   const allMovies = useRef(null);
+  const filteredLingth = useRef(null);
+  const inputRef = useRef(null);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [likedMovies, setLikedMovies] = React.useState([]);
-  const [searchPrase, setSearchPhrase] = React.useState('*');
+  const [searchPrase, setSearchPhrase] = React.useState('');
+  const [haveQueryOnLoad, setHaveQueryOnLoad] = React.useState(
+    typeof localStorage.getItem('sasMovExpLastSearchQuery') == 'string'
+      ? true
+      : false
+  );
+  const [isPageLoaded, setIsPageLoaded] = React.useState(false);
+
+  const filterFunc = () => {
+    if (!allMovies.current) {
+      return;
+    }
+
+    const newList = allMovies.current
+      .filter((movie) => {
+        return (movie.nameEN + movie.nameRU)
+          .toLowerCase()
+          .includes(searchPrase.toLowerCase());
+      })
+      .filter((movie) => {
+        return movie.duration >= 40 || isSwitchActive;
+      });
+    if (filteredLingth.current) {
+      filteredLingth.current = { length: newList.length };
+    }
+    return newList;
+  };
 
   const handleSearchChange = (e) => {
+    console.log(allMovies.current);
     e.preventDefault();
-    setSearchPhrase(e.target.value);
+    setSearchPhrase(e.target[0].value);
+    localStorage.setItem('sasMovExpLastSearchQuery', e.target[0].value);
   };
+
   React.useEffect(() => {
     Promise.all([movApi.getAllMovies(), api.getMyMovies()]).then(
       ([all, likes]) => {
         allMovies.current = all;
-        setFilteredMovies([...all]);
+        setFilteredMovies(all);
         setLikedMovies(likes.map((item) => item.movieId));
+        console.log();
+        setIsPageLoaded(true);
       }
     );
-  }, [location]);
+  }, []);
+
+  React.useEffect(() => {
+    const val = localStorage.getItem('sasMovExpLastSearchQuery') || '';
+    if (!inputRef.current) {
+      return;
+    }
+    inputRef.current.value = val;
+    setSearchPhrase(val);
+    setFilteredMovies(filterFunc());
+  }, [inputRef.current]);
+
+  React.useEffect(() => {
+    const newList = filterFunc();
+    console.log('searchPhrase >>> ', searchPrase, newList);
+    setFilteredMovies(newList);
+  }, [location, searchPrase, isSwitchActive]);
 
   React.useEffect(() => {
     if (width >= 1280) {
@@ -48,18 +108,17 @@ function MoviesList() {
     if (width < 768) {
       setCardsEdge(5);
     }
-  }, []);
+  }, [searchPrase, isSwitchActive]);
 
-  console.log('>> likedMovies', likedMovies);
-  return (
+  return isPageLoaded ? (
     <>
       <main className="main">
         <section className="control-panel">
           <form onSubmit={handleSearchChange} className="control-panel__upper">
             <input
+              ref={inputRef}
               placeholder="Фильмы"
               className="control-panel__title"
-              value={searchPrase}
             ></input>
             <button type="submit" className="control-panel__search-button">
               Найти
@@ -68,6 +127,10 @@ function MoviesList() {
           <div className="control-panel__bottom">
             <div
               onClick={() => {
+                localStorage.setItem(
+                  'sasMovExpLastSwitchState',
+                  !isSwitchActive
+                );
                 setIsSwitchActive(!isSwitchActive);
               }}
               className={
@@ -87,21 +150,10 @@ function MoviesList() {
             <p className="control-panel__switch-title">Короткометражки</p>
           </div>
         </section>
-        <section className="movies-list">
-          {filteredMovies
-            .filter((movie) => {
-              return (
-                likedMovies.includes(movie.id) || location.pathname == '/movies'
-              );
-            })
-            .filter((movie) => {
-              return (movie.nameEN + movie.nameRU).includes(searchPrase);
-            })
-            .filter((movie) => {
-              return movie.duration >= 40 || isSwitchActive;
-            })
-            .slice(0, CardsEdge)
-            .map((item, index) => {
+        {(haveQueryOnLoad || searchPrase.length > 0) &&
+        filteredMovies.length > 0 ? (
+          <section className="movies-list">
+            {filteredMovies.slice(0, CardsEdge).map((item, index) => {
               return (
                 <MovieCard
                   likedMovies={likedMovies}
@@ -112,7 +164,10 @@ function MoviesList() {
                 />
               );
             })}
-        </section>
+          </section>
+        ) : (
+          <FoundNothing></FoundNothing>
+        )}
         {location.pathname != '/saved-movies' &&
           CardsEdge < filteredMovies.length && (
             <button
@@ -127,6 +182,8 @@ function MoviesList() {
           )}
       </main>
     </>
+  ) : (
+    <Loader></Loader>
   );
 }
 
