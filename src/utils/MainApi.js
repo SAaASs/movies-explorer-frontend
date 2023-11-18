@@ -81,7 +81,7 @@ export class MainApi {
 }
 
 export const api = new MainApi({
-  baseUrl: 'http://localhost:3002/',
+  baseUrl: 'https://api.sasmovexp.students.nomoredomainsrocks.ru/',
   headers: {
     'Content-Type': 'application/json',
   },
