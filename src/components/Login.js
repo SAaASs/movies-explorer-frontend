@@ -76,7 +76,7 @@ function Login() {
                     String(e.target.value)
                       .toLowerCase()
                       .match(
-                        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+                        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/
                       )
                   ) {
                     setIsPasswordBad(false);
@@ -89,7 +89,8 @@ function Login() {
               ></input>
               {isPasswordBad && (
                 <span className="sign__input-err">
-                  Пароль должен быть 6-16 символов и иметь спец символ
+                  Пароль должен содержать не менее 8 символов и иметь спец
+                  символ
                 </span>
               )}
             </div>
