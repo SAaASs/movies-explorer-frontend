@@ -10,4 +10,9 @@
     line-height: normal;
     padding-bottom: 16px;
     background: transparent;
+    cursor: pointer;
+}
+.profile__edit:disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
 }

@@ -1,7 +1,7 @@
 function About() {
   return (
     <>
-      <section className="about">
+      <section id="about" className="about">
         <h3 className="about__title">О проекте</h3>
         <div className="about__text">
           <div className="about__text-wrapper">

@@ -71,9 +71,27 @@ function App() {
             }
           />
           <Route />
+          <Route
+            path="/sign-in"
+            element={
+              <ProtectedRouteElement
+                isLoggedIn={currentUser.name != '' ? false : true}
+                element={Login}
+              />
+            }
+          />
+          <Route />
+          <Route
+            path="/sign-up"
+            element={
+              <ProtectedRouteElement
+                isLoggedIn={currentUser.name != '' ? false : true}
+                element={Register}
+              />
+            }
+          />
+          <Route />
           <Route path="/" element={<Home />} />
-          <Route path="/sign-up" element={<Register />} />
-          <Route path="/sign-in" element={<Login />} />
           <Route />
           <Route path="*" element={<NotFound />} />
         </Routes>

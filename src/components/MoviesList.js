@@ -18,8 +18,10 @@ function MoviesList() {
   const [howMuchCardsAdd, setHowMuchCardsAdd] = React.useState(4);
   const [CardsEdge, setCardsEdge] = React.useState(16);
   const [isSwitchActive, setIsSwitchActive] = React.useState(
-    typeof localStorage.getItem('sasMovExpLastSwitchState') == 'string'
-      ? localStorage.getItem('sasMovExpLastSwitchState') === 'true'
+    location.pathname == '/movies'
+      ? typeof localStorage.getItem('sasMovExpLastSwitchState') == 'string'
+        ? localStorage.getItem('sasMovExpLastSwitchState') === 'true'
+        : false
       : false
   );
   const allMovies = useRef(null);
@@ -47,7 +49,7 @@ function MoviesList() {
           .includes(searchPrase.toLowerCase());
       })
       .filter((movie) => {
-        return movie.duration >= 40 || isSwitchActive;
+        return movie.duration <= 40 || !isSwitchActive;
       });
     if (filteredLingth.current) {
       filteredLingth.current = { length: newList.length };
@@ -63,26 +65,31 @@ function MoviesList() {
   };
 
   React.useEffect(() => {
-    Promise.all([movApi.getAllMovies(), api.getMyMovies()]).then(
-      ([all, likes]) => {
+    Promise.all([movApi.getAllMovies(), api.getMyMovies()])
+      .then(([all, likes]) => {
         allMovies.current = all;
         setFilteredMovies(all);
         setLikedMovies(likes.map((item) => item.movieId));
         console.log();
         setIsPageLoaded(true);
-      }
-    );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   React.useEffect(() => {
-    const val = localStorage.getItem('sasMovExpLastSearchQuery') || '';
+    const val =
+      location.pathname == '/movies'
+        ? localStorage.getItem('sasMovExpLastSearchQuery') || ''
+        : '';
     if (!inputRef.current) {
       return;
     }
     inputRef.current.value = val;
     setSearchPhrase(val);
     setFilteredMovies(filterFunc());
-  }, [inputRef.current]);
+  }, [inputRef.current, location]);
 
   React.useEffect(() => {
     const newList = filterFunc();
@@ -150,7 +157,9 @@ function MoviesList() {
             <p className="control-panel__switch-title">Короткометражки</p>
           </div>
         </section>
-        {(haveQueryOnLoad || searchPrase.length > 0) &&
+        {(haveQueryOnLoad ||
+          searchPrase.length > 0 ||
+          location.pathname == '/saved-movies') &&
         filteredMovies.length > 0 ? (
           <section className="movies-list">
             {filteredMovies.slice(0, CardsEdge).map((item, index) => {

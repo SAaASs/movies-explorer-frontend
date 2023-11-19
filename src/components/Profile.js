@@ -10,6 +10,7 @@ function Profile() {
   const [isEmailBad, setIsEmailBad] = React.useState(false);
   const [isNameBad, setIsNameBad] = React.useState(false);
   const [name, setName] = React.useState(currentUser.currentUser.name);
+  console.log();
   React.useEffect(() => {
     setEmail(currentUser.currentUser.email);
     setName(currentUser.currentUser.name);
@@ -21,9 +22,14 @@ function Profile() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            api.PatchMe(e.target[0].value, e.target[1].value).then((res) => {
-              currentUser.setCurrentUser(res);
-            });
+            api
+              .PatchMe(e.target[0].value, e.target[1].value)
+              .then((res) => {
+                currentUser.setCurrentUser(res);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           }}
         >
           <div className="profile__upper">
@@ -83,7 +89,11 @@ function Profile() {
           </div>
           <div className="profile__lower">
             <button
-              disabled={!(!isEmailBad & !isNameBad)}
+              disabled={
+                !(!isEmailBad & !isNameBad) ||
+                (name == currentUser.currentUser.name) &
+                  (email == currentUser.currentUser.email)
+              }
               type="submit"
               className="profile__edit"
             >

@@ -21,24 +21,35 @@ function MovieCard({ likedMovies, setLikedMovies, card, isLikedOnLoad }) {
           <button
             onClick={() => {
               if (!isLiked) {
-                api.LikeMovie(card);
-              } else {
-                api.UnlikeMovie(card.id).then((movie) => {
-                  const res = likedMovies.filter((mov) => {
-                    return !(mov == card.id);
+                api
+                  .LikeMovie(card)
+                  .then(() => {
+                    setIsLiked(!isLiked);
+                  })
+                  .catch((err) => {
+                    console.log(err);
                   });
+              } else {
+                api
+                  .UnlikeMovie(card.id)
+                  .then((movie) => {
+                    const res = likedMovies.filter((mov) => {
+                      return !(mov == card.id);
+                    });
 
-                  setLikedMovies(res);
-                });
+                    setLikedMovies(res);
+                  })
+                  .then(() => {
+                    setIsLiked(!isLiked);
+                  });
               }
-              setIsLiked(!isLiked);
             }}
             className={!isLiked ? 'movieCard__like' : 'movieCard__like_active'}
           ></button>
         </div>
         <h4 className="movieCard__duration">{`${Math.floor(
           card.duration / 60
-        )}:${mins}`}</h4>
+        )}ч ${mins}м`}</h4>
       </div>
     )
   );

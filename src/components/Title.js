@@ -23,7 +23,9 @@ function Title() {
             className="title__web-image"
           ></img>
         </div>
-        <button className="title__know-more">Узнать больше</button>
+        <a href="#about" className="title__know-more">
+          Узнать больше
+        </a>
       </section>
     </>
   );

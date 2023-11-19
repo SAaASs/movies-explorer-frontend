@@ -19,7 +19,13 @@ function Portfolio() {
               Контур». После того, как прошёл курс по веб-разработке, начал
               заниматься фриланс-заказами и ушёл с постоянной работы.
             </p>
-            <a className="portfolio__gh-link">Github</a>
+            <a
+              target="_blank"
+              href="https://github.com"
+              className="portfolio__gh-link"
+            >
+              Github
+            </a>
           </div>
           <img
             alt="vitaliy photo"

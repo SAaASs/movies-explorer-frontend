@@ -2,15 +2,16 @@ import logo from '../images/logo.svg';
 import { useNavigate } from 'react-router-dom';
 import React, { useContext } from 'react';
 import { api } from '../utils/MainApi';
-
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 function Register() {
   const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
-  const [isEmailBad, setIsEmailBad] = React.useState(false);
-  const [isPasswordBad, setIsPasswordBad] = React.useState(false);
+  const [isEmailBad, setIsEmailBad] = React.useState(true);
+  const [isPasswordBad, setIsPasswordBad] = React.useState(true);
   const [password, setPassword] = React.useState('');
-  const [isNameBad, setIsNameBad] = React.useState(false);
+  const [isNameBad, setIsNameBad] = React.useState(true);
   const [name, setName] = React.useState('');
+  const currentUser = useContext(CurrentUserContext);
   return (
     <>
       <main className="sign">
@@ -25,7 +26,22 @@ function Register() {
               api
                 .RegMe(e.target[0].value, e.target[1].value, e.target[2].value)
                 .then((res) => {
-                  navigate('/sign-in');
+                  return api.LoginMe(e.target[1].value, e.target[2].value);
+                })
+                .then((res) => {
+                  console.log(currentUser);
+                  api._headers = {
+                    'Content-Type': 'application/json',
+                    authorisation: res.token,
+                  };
+                  localStorage.setItem('movExpToken', res.token);
+                  return api.getMe();
+                })
+                .then((res) => {
+                  console.log(res);
+                  currentUser.setCurrentUser(res);
+
+                  navigate('/movies');
                 });
             }}
             className="sign__form"

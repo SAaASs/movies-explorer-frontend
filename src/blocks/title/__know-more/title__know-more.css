@@ -11,6 +11,9 @@
     font-style: normal;
     font-weight: 500;
     line-height: 16px; /* 133.333% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 @media (max-width: 1024px) {
     .title__know-more {

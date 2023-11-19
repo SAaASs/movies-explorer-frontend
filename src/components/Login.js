@@ -6,8 +6,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = React.useState('');
-  const [isEmailBad, setIsEmailBad] = React.useState(false);
-  const [isPasswordBad, setIsPasswordBad] = React.useState(false);
+  const [isEmailBad, setIsEmailBad] = React.useState(true);
+  const [isPasswordBad, setIsPasswordBad] = React.useState(true);
   const [password, setPassword] = React.useState('');
   const currentUser = useContext(CurrentUserContext);
   return (
@@ -38,7 +38,10 @@ function Login() {
                   console.log(res);
                   currentUser.setCurrentUser(res);
 
-                  navigate('/');
+                  navigate('/movies');
+                })
+                .catch((err) => {
+                  console.log(err);
                 });
             }}
           >
