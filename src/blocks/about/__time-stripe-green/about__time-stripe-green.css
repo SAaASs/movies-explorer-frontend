@@ -1,0 +1,18 @@
+.about__time-stripe-green {
+    width: 15%;
+    background-color: #2BE080;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .about__time-stripe-green {
+        width: 35%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2BE080;
+    }
+}

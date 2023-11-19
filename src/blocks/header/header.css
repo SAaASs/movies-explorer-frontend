@@ -1,0 +1,9 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 74px;
+    background-color: #073042;
+    align-items: center;
+    max-width: 1280px;
+    margin: auto;
+}

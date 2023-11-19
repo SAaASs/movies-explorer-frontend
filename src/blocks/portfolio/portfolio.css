@@ -1,0 +1,13 @@
+.portfolio {
+    padding: 110px 70px 125px 70px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .portfolio {
+        padding: 90px 50px 90px 50px;
+    }
+  }
+@media (max-width: 768px) {
+    .portfolio {
+        padding: 70px 14px 79px 14px;
+    }
+}

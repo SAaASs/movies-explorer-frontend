@@ -1,0 +1,13 @@
+.portfolio__title {
+    border: none;
+    border-bottom: solid 1px black;
+    width: 100%;
+    padding-bottom: 23px;
+    color: #000;
+    font-family: Inter;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.88px;
+}

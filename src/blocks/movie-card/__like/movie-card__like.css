@@ -1,0 +1,11 @@
+.movieCard__like {
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    background-image: url('../../../images/likeUnactive.svg');
+    border: none;
+    outline: none;
+}
+.movieCard__like:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,9 @@
+.footer__year {
+    opacity: 0.5;
+}
+@media (max-width: 768px) {
+    .footer__year {
+        text-align: center;
+        padding-top: 30px;
+    }
+  }

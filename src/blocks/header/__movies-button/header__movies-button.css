@@ -1,0 +1,9 @@
+.header__movies-button {
+    background: transparent;
+    color: white;
+    outline: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
