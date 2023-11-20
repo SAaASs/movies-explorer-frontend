@@ -16,7 +16,9 @@ function MoviesList() {
     localStorage.getItem('sasMovExpLastSwitchState')
   );
   const [howMuchCardsAdd, setHowMuchCardsAdd] = React.useState(4);
-  const [CardsEdge, setCardsEdge] = React.useState(16);
+  const [CardsEdge, setCardsEdge] = React.useState(
+    location.pathname == '/movies' ? 16 : 100
+  );
   const [isSwitchActive, setIsSwitchActive] = React.useState(
     location.pathname == '/movies'
       ? typeof localStorage.getItem('sasMovExpLastSwitchState') == 'string'
@@ -115,8 +117,17 @@ function MoviesList() {
     if (width < 768) {
       setCardsEdge(5);
     }
-  }, [searchPrase, isSwitchActive]);
-
+    if (location.pathname == '/saved-movies') {
+      setCardsEdge(100);
+    }
+  }, [searchPrase, isSwitchActive, location]);
+  React.useEffect(() => {
+    if (location.pathname == '/saved-movies') {
+      api.getMyMovies().then((likes) => {
+        setLikedMovies(likes.map((item) => item.movieId));
+      });
+    }
+  }, [location]);
   return isPageLoaded ? (
     <>
       <main className="main">

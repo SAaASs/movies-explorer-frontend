@@ -26,6 +26,7 @@ function Profile() {
               .PatchMe(e.target[0].value, e.target[1].value)
               .then((res) => {
                 currentUser.setCurrentUser(res);
+                alert('Ваш профиль обновлен');
               })
               .catch((err) => {
                 console.log(err);
