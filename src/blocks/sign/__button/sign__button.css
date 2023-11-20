@@ -12,6 +12,6 @@
     margin-top: 128px;
 }
 .sign__button:disabled{
-    opacity: 0.5;
     cursor: not-allowed;
+    background-color: red;
 }
