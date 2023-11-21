@@ -26,6 +26,8 @@ function Register() {
               api
                 .RegMe(e.target[0].value, e.target[1].value, e.target[2].value)
                 .then((res) => {
+                  localStorage.removeItem('sasMovExpLastSearchQuery');
+                  localStorage.removeItem('sasMovExpLastSwitchState');
                   return api.LoginMe(e.target[1].value, e.target[2].value);
                 })
                 .then((res) => {

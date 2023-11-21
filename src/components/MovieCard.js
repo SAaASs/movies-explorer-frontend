@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { api } from '../utils/MainApi';
 function MovieCard({ likedMovies, setLikedMovies, card, isLikedOnLoad }) {
   const location = useLocation();
-  const [isLiked, setIsLiked] = React.useState(isLikedOnLoad);
+  const [isLiked, setIsLiked] = React.useState(likedMovies.includes(card.id));
   let mins = card.duration % 60;
   if (mins < 10) {
     mins = '0' + (card.duration % 60);

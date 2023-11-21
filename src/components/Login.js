@@ -26,6 +26,8 @@ function Login() {
               api
                 .LoginMe(e.target[0].value, e.target[1].value)
                 .then((res) => {
+                  localStorage.removeItem('sasMovExpLastSearchQuery');
+                  localStorage.removeItem('sasMovExpLastSwitchState');
                   console.log(currentUser);
                   api._headers = {
                     'Content-Type': 'application/json',
