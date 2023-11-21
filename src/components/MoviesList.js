@@ -28,10 +28,21 @@ function MoviesList() {
   );
   const allMovies = useRef(null);
   const filteredLingth = useRef(null);
-  const inputRef = useRef(null);
+  //const inputRef = useRef(null);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [inputVal, setInputVal] = React.useState(
+    (typeof localStorage.getItem('sasMovExpLastSearchQuery') == 'string') &
+      (location.pathname == '/movies')
+      ? localStorage.getItem('sasMovExpLastSearchQuery')
+      : ''
+  );
   const [likedMovies, setLikedMovies] = React.useState([]);
-  const [searchPrase, setSearchPhrase] = React.useState('');
+  const [searchPrase, setSearchPhrase] = React.useState(
+    (typeof localStorage.getItem('sasMovExpLastSearchQuery') == 'string') &
+      (location.pathname == '/movies')
+      ? localStorage.getItem('sasMovExpLastSearchQuery')
+      : ''
+  );
   const [haveQueryOnLoad, setHaveQueryOnLoad] = React.useState(
     typeof localStorage.getItem('sasMovExpLastSearchQuery') == 'string'
       ? true
@@ -70,9 +81,18 @@ function MoviesList() {
     Promise.all([movApi.getAllMovies(), api.getMyMovies()])
       .then(([all, likes]) => {
         allMovies.current = all;
-        setFilteredMovies(all);
+        setFilteredMovies(
+          all
+            .filter((movie) => {
+              return (movie.nameEN + movie.nameRU)
+                .toLowerCase()
+                .includes(searchPrase.toLowerCase());
+            })
+            .filter((movie) => {
+              return movie.duration <= 40 || !isSwitchActive;
+            })
+        );
         setLikedMovies(likes.map((item) => item.movieId));
-        console.log();
         setIsPageLoaded(true);
       })
       .catch((err) => {
@@ -80,18 +100,18 @@ function MoviesList() {
       });
   }, []);
 
-  React.useEffect(() => {
-    const val =
-      location.pathname == '/movies'
-        ? localStorage.getItem('sasMovExpLastSearchQuery') || ''
-        : '';
-    if (!inputRef.current) {
-      return;
-    }
-    inputRef.current.value = val;
-    setSearchPhrase(val);
-    setFilteredMovies(filterFunc());
-  }, [inputRef.current, location]);
+  // React.useEffect(() => {
+  //   const val =
+  //     location.pathname == '/movies'
+  //       ? localStorage.getItem('sasMovExpLastSearchQuery') || ''
+  //       : '';
+  //   if (!inputRef.current) {
+  //     return;
+  //   }
+  //   inputRef.current.value = val;
+  //   setSearchPhrase(val);
+  //   setFilteredMovies(filterFunc());
+  // }, [inputRef.current, location]);
 
   React.useEffect(() => {
     const newList = filterFunc();
@@ -126,7 +146,15 @@ function MoviesList() {
       api.getMyMovies().then((likes) => {
         setLikedMovies(likes.map((item) => item.movieId));
       });
+      setSearchPhrase('');
+      setInputVal('');
       setIsSwitchActive(false);
+    } else {
+      setSearchPhrase(localStorage.getItem('sasMovExpLastSearchQuery'));
+      setInputVal(localStorage.getItem('sasMovExpLastSearchQuery'));
+      setIsSwitchActive(
+        localStorage.getItem('sasMovExpLastSwitchState') == 'true'
+      );
     }
   }, [location]);
   return isPageLoaded ? (
@@ -135,9 +163,12 @@ function MoviesList() {
         <section className="control-panel">
           <form onSubmit={handleSearchChange} className="control-panel__upper">
             <input
-              ref={inputRef}
+              value={inputVal}
               placeholder="Фильмы"
               className="control-panel__title"
+              onChange={(e) => {
+                setInputVal(e.target.value);
+              }}
             ></input>
             <button type="submit" className="control-panel__search-button">
               Найти
