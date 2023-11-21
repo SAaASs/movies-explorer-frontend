@@ -126,6 +126,7 @@ function MoviesList() {
       api.getMyMovies().then((likes) => {
         setLikedMovies(likes.map((item) => item.movieId));
       });
+      setIsSwitchActive(false);
     }
   }, [location]);
   return isPageLoaded ? (
