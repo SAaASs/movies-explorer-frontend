@@ -43,11 +43,6 @@ function MoviesList() {
       ? localStorage.getItem('sasMovExpLastSearchQuery')
       : ''
   );
-  const [haveQueryOnLoad, setHaveQueryOnLoad] = React.useState(
-    typeof localStorage.getItem('sasMovExpLastSearchQuery') == 'string'
-      ? true
-      : false
-  );
   const [isPageLoaded, setIsPageLoaded] = React.useState(false);
 
   const filterFunc = () => {
@@ -150,8 +145,16 @@ function MoviesList() {
       setInputVal('');
       setIsSwitchActive(false);
     } else {
-      setSearchPhrase(localStorage.getItem('sasMovExpLastSearchQuery'));
-      setInputVal(localStorage.getItem('sasMovExpLastSearchQuery'));
+      setSearchPhrase(
+        typeof localStorage.getItem('sasMovExpLastSearchQuery') == 'string'
+          ? localStorage.getItem('sasMovExpLastSearchQuery')
+          : ''
+      );
+      setInputVal(
+        typeof localStorage.getItem('sasMovExpLastSearchQuery') == 'string'
+          ? localStorage.getItem('sasMovExpLastSearchQuery')
+          : ''
+      );
       setIsSwitchActive(
         localStorage.getItem('sasMovExpLastSwitchState') == 'true'
       );
@@ -200,10 +203,7 @@ function MoviesList() {
             <p className="control-panel__switch-title">Короткометражки</p>
           </div>
         </section>
-        {(haveQueryOnLoad ||
-          searchPrase.length > 0 ||
-          location.pathname == '/saved-movies') &&
-        filteredMovies.length > 0 ? (
+        {filteredMovies.length > 0 ? (
           <section className="movies-list">
             {filteredMovies.slice(0, CardsEdge).map((item, index) => {
               return (

@@ -8,6 +8,11 @@ function MovieCard({ likedMovies, setLikedMovies, card, isLikedOnLoad }) {
   if (mins < 10) {
     mins = '0' + (card.duration % 60);
   }
+  React.useEffect(() => {
+    if (location.pathname == '/saved-movies') {
+      setIsLiked(true);
+    }
+  });
   return (
     (likedMovies.includes(card.id) || location.pathname == '/movies') && (
       <div className="movieCard">
