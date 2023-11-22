@@ -3,16 +3,11 @@ import { useLocation } from 'react-router-dom';
 import { api } from '../utils/MainApi';
 function MovieCard({ likedMovies, setLikedMovies, card, isLikedOnLoad }) {
   const location = useLocation();
-  const [isLiked, setIsLiked] = React.useState(likedMovies.includes(card.id));
+  const [isLiked, setIsLiked] = React.useState(isLikedOnLoad);
   let mins = card.duration % 60;
   if (mins < 10) {
     mins = '0' + (card.duration % 60);
   }
-  React.useEffect(() => {
-    if (location.pathname == '/saved-movies') {
-      setIsLiked(true);
-    }
-  });
   return (
     (likedMovies.includes(card.id) || location.pathname == '/movies') && (
       <div className="movieCard">

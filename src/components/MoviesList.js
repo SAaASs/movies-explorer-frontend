@@ -69,12 +69,15 @@ function MoviesList() {
     console.log(allMovies.current);
     e.preventDefault();
     setSearchPhrase(e.target[0].value);
-    localStorage.setItem('sasMovExpLastSearchQuery', e.target[0].value);
+    if (location.pathname == '/movies') {
+      localStorage.setItem('sasMovExpLastSearchQuery', e.target[0].value);
+    }
   };
 
   React.useEffect(() => {
     Promise.all([movApi.getAllMovies(), api.getMyMovies()])
       .then(([all, likes]) => {
+        console.log('likes on load', likes);
         allMovies.current = all;
         setFilteredMovies(
           all
@@ -180,10 +183,12 @@ function MoviesList() {
           <div className="control-panel__bottom">
             <div
               onClick={() => {
-                localStorage.setItem(
-                  'sasMovExpLastSwitchState',
-                  !isSwitchActive
-                );
+                if (location.pathname == '/movies') {
+                  localStorage.setItem(
+                    'sasMovExpLastSwitchState',
+                    !isSwitchActive
+                  );
+                }
                 setIsSwitchActive(!isSwitchActive);
               }}
               className={
@@ -211,7 +216,7 @@ function MoviesList() {
                   likedMovies={likedMovies}
                   setLikedMovies={setLikedMovies}
                   isLikedOnLoad={likedMovies?.includes(item.id)}
-                  key={`${item.id}_${index}`}
+                  key={`${item.id}_`}
                   card={item}
                 />
               );
