@@ -1,0 +1,16 @@
+.movieCard__img {
+    width: 270px;
+    height: 151px;
+}
+@media (min-width: 768px) and (max-width: 1140px) {
+    .movieCard__img {
+        width: 339px;
+        height: 190px;
+    }
+  }
+@media (max-width: 768px) {
+    .movieCard__img {
+        width: 300px;
+        height: 168px;
+    }
+  }

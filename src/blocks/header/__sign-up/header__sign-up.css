@@ -1,0 +1,13 @@
+.header__sign-up {
+    color: #FFF;
+    text-align: right;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}

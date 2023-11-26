@@ -1,0 +1,8 @@
+.about__text-wrapper {
+    width: 550px;
+}
+  @media (max-width: 768px) {
+    .about__text-wrapper {
+        width: 100%;
+    }
+  }

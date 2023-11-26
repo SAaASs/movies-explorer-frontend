@@ -1,0 +1,20 @@
+.sign__wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .sign__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 396px;
+    }
+}
+@media (max-width: 768px) {
+    .sign__wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 260px;
+        align-items: center;
+    }
+}

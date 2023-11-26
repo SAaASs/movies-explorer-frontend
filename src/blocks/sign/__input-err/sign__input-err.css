@@ -1,0 +1,10 @@
+.sign__input-err {
+    color: #FF3055;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    position: absolute;
+    top: 34px;
+}

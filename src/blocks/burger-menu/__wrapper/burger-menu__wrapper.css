@@ -1,0 +1,10 @@
+.burger-menu__wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    right: 0;
+}

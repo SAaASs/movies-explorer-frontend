@@ -1,0 +1,13 @@
+.title__wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 84px;
+}
+@media (max-width: 1024px) {
+    .title__wrapper {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+  }
+  

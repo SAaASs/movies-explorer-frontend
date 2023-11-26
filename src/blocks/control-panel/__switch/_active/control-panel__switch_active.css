@@ -1,0 +1,12 @@
+.control-panel__switch_active {
+    background-color: #2BE080;
+    width: 34px;
+    height: 14px;
+    border-radius: 20px;
+    position: relative;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .control-panel__switch_active {
+        margin-left: 16px;
+    }
+  }

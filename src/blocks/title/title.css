@@ -1,0 +1,10 @@
+.title {
+    padding-left: 70px;
+    padding-right: 70px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #073042;
+    flex-wrap: wrap;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
